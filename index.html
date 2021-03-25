@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ai là triệu phú</title>
+    <script src="quizs.js"></script>
+    <script src="gameFeature.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div id="quiz">
+    <div id="score"></div>
+    <div id="question"></div>
+    <div id="ansDiv1">
+        <button class="bAns" onclick="chooseAnswer(this.id)" id="ans1">1</button>
+        <button class="bAns" onclick="chooseAnswer(this.id)" id="ans2">2</button>
+    </div>
+    <div id="ansDiv2">
+        <button class="bAns" onclick="chooseAnswer(this.id)" id="ans3">3</button>
+        <button class="bAns" onclick="chooseAnswer(this.id)" id="ans4">4</button>
+    </div>
+    <div>
+        <button onclick="nextQuiz()">Bỏ qua câu hỏi</button>
+        <button onclick="halfQuestion()">50/50</button>
+        <button onclick="stopGame()">Dừng cuộc chơi</button>
+        <button onclick="resetQuiz()">Bắt đầu lại</button>
+    </div>
+
+</div>
+<!--<button id="next" onclick="nextQuiz()">Next Quiz</button>-->
+
+</body>
+</html>
+
+
+<!-----------------------------main----------------------------------------->
+<script>
+    let quiz1 = new Quiz("Ai là người tạo ra trò chơi này?",["A: Chú hàng xóm","B: Công chứ ai","C: Anh thợ điện","D: Bé phòng bên"],"B: Công chứ ai");
+    let quiz2 = new Quiz("Điền từ còn thiếu vào trong câu sau:\"Đục nước béo..\"?",["A: Vạc","B: Cá","C: Mèo","D: Cò"],"D: Cò");
+    let quiz3 = new Quiz()
+    let nOfQ=2; // khai báo số lượng câu hỏi
+    let gameManager = new GameFeature(nOfQ); // khởi tạo game với số lượng các câu hỏi
+    gameManager.addQuiz(quiz1);// thêm các câu hỏi vào game
+    gameManager.addQuiz(quiz2);// thêm các câu hỏi vào game
+    gameManager.addQuiz(quiz3);
+    function displayQuiz(index) { //hiển thị câu hỏi và các đáp án
+        document.getElementById("question").innerHTML=gameManager.quizs[index].question;
+        for (let i = 0;i < 4;i++){
+            document.getElementById("ans"+(i+1)).innerHTML=gameManager.quizs[index].answer[i];
+        }
+        displayScore();
+    }
+    displayQuiz(0); // hiển thị câu hỏi đầu tiên ngay khi vào web
+    function displayScore() { // hiển thị điểm thưởng
+        document.getElementById("score").innerHTML="Tiền thưởng: "+gameManager.score;
+    }
+    function nextQuiz() {
+       gameManager.nextQuiz();
+        displayQuiz(gameManager.current);
+    }
+
+    function chooseAnswer(id) { // check và hiển thị kết quả
+        let ans = document.getElementById(id).innerHTML;
+        gameManager.chooseAnswer(ans);
+        if (gameManager.checkAnswer(ans)){
+            gameManager.checkWin();
+            gameManager.nextQuizWin();
+            displayQuiz(gameManager.current)
+            displayScore();
+            return true;
+        }
+        else{
+            endGame()
+            displayScore();
+            displayQuiz(gameManager.current)
+            return false;
+        }
+    }
+    function halfQuestion() {
+        gameManager.halfQuestion()
+        alert(gameManager.current)
+    }
+    function resetQuiz() { // reset lại các câu hỏi từ đầu
+        gameManager.endGame();
+        displayQuiz(gameManager.current)
+        displayScore();
+    }
+    function stopGame() {
+        gameManager.stopGame();
+        resetQuiz();
+    }
+    // function endGame() { // kết thúc game
+    //     gameManager.endGame();
+    //     displayQuiz(gameManager.current);
+    //     displayScore();
+    // }
+
+
+</script>
+

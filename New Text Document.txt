@@ -1,0 +1,38 @@
+-1 tìm hiểu phân tích dự án
+	*các chức năng
+		*quản lý quiz
+			-thêm quiz
+			-sửa quiz
+			-xoá quiz
+		*chơi game
+			-cài đặt thông số
+				-thời gian
+				-số lượng câu hỏi
+				-mức thưởng
+		*hiển thị câu hỏi
+		*kiểm tra đúng sai
+		*chuyển câu hỏi
+		*cài đặt âm thanh
+			-nhạc nền
+			-sfx
+		*các chức năng phụ
+			- 5050
+			-hỏi ý kiến khán giả
+			-đổi câu hỏi
+		*check win
+		*đồ hoạ
+		*thời gian hoàn thành
+-2 thiết kế
+	*thiết kế các class
+		*quiz
+			-question:string
+			-anwer:array
+			-correct:string
+		*soud
+		*timer
+		*help
+	*gameManager:quản lý tất cả các thành phần trong game
+		*quiz:array
+		*+next quiz()
+		*+chooseAnswer()
+		*+checkAnswer()
