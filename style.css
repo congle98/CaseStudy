@@ -63,6 +63,8 @@
 
 #ansDiv3{
     font-size: 35px;
+    background-color: black;
+    border: 1px solid rgba(255,0,234,0.97);
     text-shadow:2px 1px rgba(155,10,31,0.97);
     text-align: center;
     border-radius: 5px;
@@ -72,6 +74,7 @@
     width: 50%;
     height: 170px;
     opacity: 0.8;
+
 }
 /*#show{*/
 /*    */
@@ -79,6 +82,7 @@
 /*}*/
 #show {
     vertical-align: middle;
+    animation-delay: 1s;
     animation: blinker 1s linear infinite;
 }
 

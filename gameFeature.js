@@ -57,7 +57,7 @@ class GameFeature {
             this.countBonus++;
             // alert("bạn đã trả lời đúng !!!");
             this.bonusScore(1);
-            document.getElementById("show").innerHTML="bạn đã trả lời đúng câu số "+(this.current+1)+" tổng tiền thường: "+this.score+" USD!!";
+            document.getElementById("show").innerHTML="bạn đã trả lời đúng câu số "+(this.current+1)+" tổng tiền thưởng: "+this.score+" USD!!";
         }
         else {
             document.getElementById("show").innerHTML="bạn đã trả lời sai, vui lòng chơi lại từ đầu!!";
@@ -70,9 +70,10 @@ class GameFeature {
                 this.countBonus++;
                 this.bonusScore(0.5);
                 this.current++;
-                document.getElementById("show").innerHTML="Bạn đã bỏ qua câu "+(this.current)+"  tổng tiền thường: "+this.score+" USD!!";
+                document.getElementById("show").innerHTML="Bạn đã bỏ qua câu "+(this.current)+"  tổng tiền thưởng: "+this.score+" USD!!";
             }
             else {
+                soundWin();
                 this.stopGame();
                 return true
             }
@@ -90,6 +91,7 @@ class GameFeature {
 
         }
         else {
+            soundWin();
             this.stopGame();
             return true
         }
@@ -112,6 +114,7 @@ class GameFeature {
 
     }
     stopGame(){
+        soundWin();
         document.getElementById("show").innerHTML="CHÚC MỪNG BẠN ĐÃ CHIẾN THẮNG BẠN ĐƯỢC THƯỞNG: "+this.score+" USD";
 
     }
