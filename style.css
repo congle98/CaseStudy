@@ -1,5 +1,14 @@
 #quiz{
     background-image:url("New_logo.PNG.png") ;
+    background-size: 700px 700px ;
+    border: solid 5px rgba(137,96,155,0.97);
+    width: 700px;
+    height: 700px;
+    margin: auto;
+}
+#alert{
+
+    background-image:url("New_logo.PNG.png") ;
     background-size: 700px 500px ;
     border: solid 5px rgba(137,96,155,0.97);
     width: 700px;
@@ -7,6 +16,7 @@
     margin: auto;
 }
 #score{
+    margin-top: 10px;
     font-size: 30px;
     color: rgba(155,84,24,0.97);
 }
@@ -22,17 +32,78 @@
     margin-bottom: 80px;
     margin-left: 150px;
     text-align: center;
+    opacity: 0.8;
+
 }
 #ansDiv1{
     position: relative;
     width: 60%;
     margin-top: 1px;
     margin-left: 150px;
+    opacity: 0.9;
 }
 #ansDiv2{
     position: relative;
     margin-left: 150px;
     width: 60%;
+    opacity: 0.9;
+}
+.bAns:hover{
+    background-color: darkgreen;
+    color: black;
+    animation: blinker 1s linear infinite;
+}
+
+
+.bAns2:hover{
+    background-color:rgba(155,84,24,0.97);
+    color: black ;
+
+}
+
+#ansDiv3{
+    font-size: 35px;
+    text-shadow:2px 1px rgba(155,10,31,0.97);
+    text-align: center;
+    border-radius: 5px;
+    color:rgba(255,176,6,0.97);
+    margin-top: 20px;
+    margin-left: 150px;
+    width: 50%;
+    height: 170px;
+    opacity: 0.8;
+}
+/*#show{*/
+/*    */
+/*    vertical-align: middle;*/
+/*}*/
+#show {
+    vertical-align: middle;
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+#ansDiv4{
+    margin-top: 20px;
+    position: relative;
+    margin-right: 30px;
+
+}
+.bAns2{
+    width: 20%;
+    height: 35px;
+    text-align: center;
+    color: rgba(155,84,24,0.97);
+    margin-top: 20px;
+    margin-left: 30px;
+    border: 3px solid rgba(155,56,151,0.97);
+    border-radius: 5px;
+    background: black;
+    font-size: 20px;
 }
 .bAns{
     width: 30%;

@@ -5,13 +5,11 @@ class GameFeature {
         this.quizs = [];
         this.score=0;
         this.countNQ=1;
+        this.countBonus=0;
+        this.count5050=1;
 
     }
-    checkWin(){ //kiểm tra đã chiến thắng chưa
-        if(this.current==(nOfQ-1)){
-            alert("Chúc mừng bạn đã dành chiến thắng, bạn được thưởng: "+this.score+" USD")
-        }
-    }
+
     checkAnswer(ans){ //kiểm tra câu trả lời đúng hay sai
         if(ans===this.quizs[this.current].correct){
             return true
@@ -20,30 +18,68 @@ class GameFeature {
             return false
         }
     }
+    bonusScore(val){
+        switch (this.current){
+            case 0:
+                this.score+=(100*val);
+                break;
+            case 1:
+                this.score+=(200*val);
+                break;
+            case 2:
+                this.score+=(300*val);
+                break;
+            case 3:
+                this.score+=(400*val);
+                break;
+            case 4:
+                this.score+=(500*val);
+                break;
+            case 5:
+                this.score+=(600*val);
+                break;
+            case 6:
+                this.score+=(700*val);
+                break;
+            case 7:
+                this.score+=(800*val);
+                break;
+            case 8:
+                this.score+=(900*val);
+                break;
+            case 9:
+                this.score+=(1000*val);
+                break;
+        }
+    }
     chooseAnswer(ans){ // hiển thị kết quả kiểm tra đáp án
-        if (this.checkAnswer(ans)){
-            alert("bạn đã trả lời đúng !!!")
-            this.score+=100;
+        if (this.checkAnswer(ans)&&this.countBonus<this.limit){
+            this.countBonus++;
+            // alert("bạn đã trả lời đúng !!!");
+            this.bonusScore(1);
+            document.getElementById("show").innerHTML="bạn đã trả lời đúng câu số "+(this.current+1)+" tổng tiền thường: "+this.score+" USD!!";
         }
         else {
-            alert("bạn đã trả lời sai, vui lòng chơi lại từ đầu!!")
+            document.getElementById("show").innerHTML="bạn đã trả lời sai, vui lòng chơi lại từ đầu!!";
         }
     }
     nextQuiz(){// chuyển câu trả lời khi dùng nextQuiz
         if(this.countNQ==1){
-            alert("Bạn còn : "+(1-this.countNQ)+" lượt bỏ qua câu hỏi")
-            if(this.current<this.limit-1){
-                this.current++;
-                this.score+=50;
 
+            if(this.current<this.limit-1&&this.countBonus<this.limit){
+                this.countBonus++;
+                this.bonusScore(0.5);
+                this.current++;
+                document.getElementById("show").innerHTML="Bạn đã bỏ qua câu "+(this.current)+"  tổng tiền thường: "+this.score+" USD!!";
             }
             else {
-                alert("bạn đã đến câu hỏi cuối cùng !!!")
+                this.stopGame();
+                return true
             }
             this.countNQ++;
         }
         else{
-            alert("Xin lỗi bạn đã hết lượt bỏ qua")
+            document.getElementById("show").innerHTML="Xin lỗi bạn đã hết lượt bỏ qua";
         }
 
 
@@ -54,22 +90,30 @@ class GameFeature {
 
         }
         else {
-            alert("bạn đã đến câu hỏi cuối cùng !!!")
+            this.stopGame();
+            return true
         }
     }
     halfQuestion(){
         let count = 0;
-        for (let i = 0; i < 4; i++) {
-            if ((this.quizs[this.current].answer[i] !== this.quizs[this.current].correct)&&count<2) {
-                this.quizs[this.current].answer.splice(i, 1,"X")
-                count++;
+        if(this.count5050==1){
+            this.count5050++;
+            for (let i = 0; i < 4; i++) {
+                if ((this.quizs[this.current].answer[i] !== this.quizs[this.current].correct)&&count<2) {
+                    this.quizs[this.current].answer.splice(i, 1,"X")
+                    count++;
+                }
             }
+            displayQuiz(this.current);
+            document.getElementById("show").innerHTML="Đã bỏ đi 2 phương án sai!!";
         }
-        displayQuiz(this.current);
-        alert("Đã bỏ đi 2 phương án sai!!");
+        document.getElementById("show").innerHTML="Bạn đã hết lượt sử dụng sự trợ giúp 50/50!!"
+
+
     }
     stopGame(){
-        alert("Chúc mừng bạn đã dành chiến thắng, bạn được thưởng: "+this.score+" USD");
+        document.getElementById("show").innerHTML="CHÚC MỪNG BẠN ĐÃ CHIẾN THẮNG BẠN ĐƯỢC THƯỞNG: "+this.score+" USD";
+
     }
 
 
@@ -77,7 +121,8 @@ class GameFeature {
         this.current=0;
         this.score=0;
         this.countNQ=1;
-
+        this.countBonus=0;
+        this.count5050=1;
     }
     // nextGame(){
     //     this.current=0;
