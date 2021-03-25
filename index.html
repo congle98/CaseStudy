@@ -6,10 +6,13 @@
     <script src="quizs.js"></script>
     <script src="gameFeature.js"></script>
     <link rel="stylesheet" href="style.css">
-    <embed with="0" height="0" src="link.mp3" autostart="true" loop="true">
-
 </head>
-<body id="bd">
+<body>
+<audio autoplay loop id="audio">
+    <source src="nhacnen.mp3" type="audio/mpeg">
+</audio>
+<script>
+</script>
 <div id="quiz">
     <div id="score"></div>
     <div id="question"></div>
@@ -39,7 +42,6 @@
 </body>
 </html>
 
-
 <!-----------------------------main----------------------------------------->
 <script>
     let quiz1 = new Quiz("Câu 1: Ai là người tạo ra trò chơi này?",["A: Chú hàng xóm","B: Công chứ ai","C: Anh thợ điện","D: Bé phòng bên"],"B: Công chứ ai");
@@ -64,6 +66,10 @@
     gameManager.addQuiz(quiz8);
     gameManager.addQuiz(quiz9);
     gameManager.addQuiz(quiz10);
+    function soundTheme() {
+        let audio = document.getElementById('audio');
+        audio.play();
+    }
     function displayQuiz(index) { //hiển thị câu hỏi và các đáp án
         document.getElementById("question").innerHTML=gameManager.quizs[index].question;
         for (let i = 0;i < 4;i++){
