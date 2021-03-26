@@ -9,6 +9,7 @@
     <script src="audio.js"></script>
 </head>
 <body>
+<!-- phần chèn âm thanh-->
 <audio autoplay loop id="audio">
     <source src="nhacnen.mp3" type="audio/mpeg">
 </audio>
@@ -20,6 +21,9 @@
 </audio>
 <audio id="win">
     <source src="win.mp3" type="audio/mpeg">
+</audio>
+<audio id="alert">
+    <source src="alert.mp3" type="audio/mpeg">
 </audio>
 <script>
 </script>
@@ -40,18 +44,15 @@
     </div>
 <!--    thẻ show các sự lựa chọn-->
     <div id="ansDiv4">
-        <button class="bAns2" onclick="nextQuiz()">Bỏ qua</button>
-        <button class="bAns2" onclick="halfQuestion()">50/50</button>
-        <button class="bAns2" onclick="stopGame()">Dừng chơi</button>
-        <button class="bAns2" onclick="resetQuiz()">Bắt đầu lại</button>
+        <button class="bAns2" onclick="nextQuiz();soundAlert()">Bỏ qua</button>
+        <button class="bAns2" onclick="halfQuestion();soundAlert()">50/50</button>
+        <button class="bAns2" onclick="stopGame();soundAlert()">Dừng chơi</button>
+        <button class="bAns2" onclick="resetQuiz();soundAlert()">Bắt đầu</button>
     </div>
 
 </div>
-<!--<button id="next" onclick="nextQuiz()">Next Quiz</button>-->
-
 </body>
 </html>
-
 <!-----------------------------main----------------------------------------->
 <script>
     let quiz1 = new Quiz("Câu 1: Ai là người tạo ra trò chơi này?",["A: Chú hàng xóm","B: Công chứ ai","C: Anh thợ điện","D: Bé phòng bên"],"B: Công chứ ai");
@@ -83,9 +84,9 @@
         }
         displayScore();
     }
-    displayQuiz(0); // hiển thị câu hỏi đầu tiên ngay khi vào web
+     // hiển thị câu hỏi đầu tiên ngay khi vào web
     function displayScore() { // hiển thị điểm thưởng
-        document.getElementById("score").innerHTML="Tiền thưởng: "+gameManager.score;
+        document.getElementById("score").innerHTML="Tiền thưởng: "+gameManager.score+" USD";
     }
     function nextQuiz() {
        gameManager.nextQuiz();
@@ -111,11 +112,12 @@
         }
     }
     function halfQuestion() {
-        gameManager.halfQuestion()
+        gameManager.halfQuestion();
     }
-    function resetQuiz() { // reset lại các câu hỏi từ đầu
+    function resetQuiz() {
+        displayQuiz(0);// reset lại các câu hỏi từ đầu
         gameManager.endGame();
-        displayQuiz(gameManager.current)
+        displayQuiz(gameManager.current);
         displayScore();
     }
     function stopGame() {

@@ -19,7 +19,7 @@ class GameFeature {
         }
     }
     bonusScore(val){
-        switch (this.current){
+        switch (this.current){ // bảng + điểm thưởng ở mỗi câu hỏi
             case 0:
                 this.score+=(100*val);
                 break;
@@ -56,7 +56,7 @@ class GameFeature {
         if (this.checkAnswer(ans)&&this.countBonus<this.limit){
             this.countBonus++;
             // alert("bạn đã trả lời đúng !!!");
-            this.bonusScore(1);
+            this.bonusScore(1);// trả lời đúng thì tỉ lệ thưởng là 1
             document.getElementById("show").innerHTML="bạn đã trả lời đúng câu số "+(this.current+1)+" tổng tiền thưởng: "+this.score+" USD!!";
         }
         else {
@@ -68,14 +68,13 @@ class GameFeature {
 
             if(this.current<this.limit-1&&this.countBonus<this.limit){
                 this.countBonus++;
-                this.bonusScore(0.5);
+                this.bonusScore(0.5);// dùng bỏ qua câu trả lời thì chỉ dc 1 nửa số điểm
                 this.current++;
                 document.getElementById("show").innerHTML="Bạn đã bỏ qua câu "+(this.current)+"  tổng tiền thưởng: "+this.score+" USD!!";
             }
             else {
-                soundWin();
+                this.bonusScore(0.5);
                 this.stopGame();
-                return true
             }
             this.countNQ++;
         }
@@ -91,36 +90,57 @@ class GameFeature {
 
         }
         else {
-            soundWin();
             this.stopGame();
             return true
         }
     }
     halfQuestion(){
-        let count = 0;
+        let countXoa = 0; // đếm xoá 2 lần
+        let countCheck=0;// đếm thêm 2 câu sai vào mảng mới 2 lần
+        let ans=[]; // tạo 1 mảng khác để chứa 2 câu trả lời sai bị xoá
+        let k=0;
         if(this.count5050==1){
             this.count5050++;
+            document.getElementById("show").innerHTML="Đã bỏ đi 2 phương án sai!!";
             for (let i = 0; i < 4; i++) {
-                if ((this.quizs[this.current].answer[i] !== this.quizs[this.current].correct)&&count<2) {
-                    this.quizs[this.current].answer.splice(i, 1,"X")
-                    count++;
+                if ((this.quizs[this.current].answer[i] !== this.quizs[this.current].correct)&&countCheck<2) { // thêm 2 câu trl sai vào mảng mới
+                    countCheck++;
+                    ans.push(this.quizs[this.current].answer[i]);
                 }
             }
-            displayQuiz(this.current);
-            document.getElementById("show").innerHTML="Đã bỏ đi 2 phương án sai!!";
+            for (let i = 0; i < 4; i++) {
+                if ((this.quizs[this.current].answer[i] !== this.quizs[this.current].correct)&&countXoa<2) { // đổi 2 câu trả lời sai thành X
+                    this.quizs[this.current].answer.splice(i, 1,"X")
+                    countXoa++;
+                }
+            }
+            displayQuiz(this.current); // hiển thị
+            console.log(ans);
+            for (let i = 0; i < 4; i++) {
+                if (this.quizs[this.current].answer[i]=="X"){  // sau khi hiển thị rồi thì phải thêm 2 câu trả lời sai lại vào mảng cũ
+                    for (let j=0;j<1;j++){
+                        this.quizs[this.current].answer.splice(i, 1,ans[k]);
+                        k++;
+                    }
+                }
+            }
+
+
+
         }
-        document.getElementById("show").innerHTML="Bạn đã hết lượt sử dụng sự trợ giúp 50/50!!"
-
-
+        else {
+            document.getElementById("show").innerHTML="Bạn đã hết lượt sử dụng sự trợ giúp 50/50!!";// nếu hết lượt thì in ra cái này
+        }
     }
-    stopGame(){
+    stopGame(){// sau khi trả lời hết câu hỏi hoặc dừng cuộc chơi thì hiển thị
         soundWin();
         document.getElementById("show").innerHTML="CHÚC MỪNG BẠN ĐÃ CHIẾN THẮNG BẠN ĐƯỢC THƯỞNG: "+this.score+" USD";
 
+
     }
 
 
-    endGame(){// kết thúc
+    endGame(){// kết thúc thì reset lại tất cả các biến đếm
         this.current=0;
         this.score=0;
         this.countNQ=1;

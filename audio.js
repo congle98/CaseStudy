@@ -10,3 +10,11 @@ function soundWin() {
     let audio = document.getElementById('win');
     audio.play();
 }
+function soundAlert() {
+    let audio = document.getElementById('alert');
+    audio.play();
+}
+function soundStart() {
+    let audio = document.getElementById('start');
+    audio.play();
+}

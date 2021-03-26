@@ -1,3 +1,5 @@
+// lỗi bỏ qua ở câu cuối cùng vẫn dc cộng điểm
+
 -1 tìm hiểu phân tích dự án
 	*các chức năng
 		*quản lý quiz
