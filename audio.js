@@ -18,3 +18,17 @@ function soundStart() {
     let audio = document.getElementById('start');
     audio.play();
 }
+let countSound = 0;
+function soundOff() {
+    let audio = document.getElementById('audio');
+    if (countSound==0){
+        audio.pause();
+        console.log(countSound)
+        countSound++;
+    }
+    else if (countSound == 1){
+        audio.play();
+        countSound--;
+    }
+
+}

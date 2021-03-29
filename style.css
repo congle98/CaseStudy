@@ -1,18 +1,13 @@
+body{
+    background-image: url("background/anh-hoa-van-trong-dong-background_095237054.png");
+    background-size: 100% 800px;
+}
 #quiz{
-    background-image:url("New_logo.PNG.png") ;
+    background-image:url("background/New_logo.PNG.png") ;
     background-size: 700px 700px ;
     border: solid 5px rgba(137,96,155,0.97);
     width: 700px;
     height: 700px;
-    margin: auto;
-}
-#alert{
-
-    background-image:url("New_logo.PNG.png") ;
-    background-size: 700px 500px ;
-    border: solid 5px rgba(137,96,155,0.97);
-    width: 700px;
-    height: 500px;
     margin: auto;
 }
 #score{
@@ -28,8 +23,8 @@
     color: bisque;
     width: 50%;
     height: 100px;
-    margin-top: 70px;
-    margin-bottom: 80px;
+    margin-top: 40px;
+    margin-bottom: 60px;
     margin-left: 150px;
     text-align: center;
     opacity: 0.8;
@@ -48,38 +43,44 @@
     width: 60%;
     opacity: 0.9;
 }
+#ansDiv3{
+     font-size: 30px;
+     background-color: black;
+    border: 4px solid rgba(155,53,140,0.97);
+     text-shadow:2px 1px rgba(155,10,31,0.97);
+     text-align: center;
+     border-radius: 5px;
+     color:rgba(255,176,6,0.97);
+     margin-top: 20px;
+     margin-left: 150px;
+     width: 50%;
+     height: 170px;
+     opacity: 0.8;
+ }
+#ansDiv4{
+    margin-top: 20px;
+    position: relative;
+    margin-right: 30px;
+
+}
 .bAns:hover{
     background-color: darkgreen;
     color: black;
     animation: blinker 1s linear infinite;
 }
-
-
 .bAns2:hover{
     background-color:rgba(155,84,24,0.97);
+    color: #000000;
+
+}
+.bAns3:hover{
+    background-color:rgba(155,84,24,0.97);
     color: black ;
-
 }
-
-#ansDiv3{
-    font-size: 30px;
-    background-color: black;
-    border: 1px solid rgba(255,0,234,0.97);
-    text-shadow:2px 1px rgba(155,10,31,0.97);
-    text-align: center;
-    border-radius: 5px;
-    color:rgba(255,176,6,0.97);
-    margin-top: 20px;
-    margin-left: 150px;
-    width: 50%;
-    height: 170px;
-    opacity: 0.8;
-
+#bAns2-1:hover{
+    background-color:rgba(255,152,17,0.97);
+    color: black ;
 }
-/*#show{*/
-/*    */
-/*    vertical-align: middle;*/
-/*}*/
 #show {
     vertical-align: middle;
     animation-delay: 1s;
@@ -91,35 +92,64 @@
         opacity: 0;
     }
 }
-#ansDiv4{
+
+.bAns{
+     width: 30%;
+     height: 35px;
+     text-align: center;
+     color: antiquewhite;
+     margin-top: 20px;
+     margin-left: 30px;
+     border: 3px solid rgba(155,56,151,0.97);
+     border-radius: 5px;
+     background: black;
+
+ }
+.bAns2{
+     width: 20%;
+     height: 35px;
+     text-align: center;
+     color: rgba(155,84,24,0.97);
+     margin-top: 20px;
+     margin-left: 30px;
+     border: 3px solid rgba(155,56,151,0.97);
+     border-radius: 5px;
+     background: black;
+     font-size: 20px;
+ }
+#bAns2-1{
+    background-color: black;
+    color: rgba(255,152,17,0.97);
+    font-size: 25px;
+    margin-top: 5px;
+    margin-left: 250px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 4px solid rgba(155,53,140,0.97);
+}
+.bAns3{
+     width:40%;
+     height: 50px;
+     text-align: center;
+     color: rgba(255,155,0,0.97);
+     margin-top: 20px;
+     margin-left: 200px;
+     border: 3px solid rgba(155,56,151,0.97);
+     border-radius: 5px;
+     background: black;
+     font-size: 40px;
+ }
+
+.material-icons{
+    float: right;
+    margin-right: 20px;
     margin-top: 20px;
     position: relative;
-    margin-right: 30px;
+    background-color: rgba(155,53,140,0.97);
 
 }
-.bAns2{
-    width: 20%;
-    height: 35px;
-    text-align: center;
-    color: rgba(155,84,24,0.97);
-    margin-top: 20px;
-    margin-left: 30px;
-    border: 3px solid rgba(155,56,151,0.97);
-    border-radius: 5px;
-    background: black;
-    font-size: 20px;
-}
-.bAns{
-    width: 30%;
-    height: 35px;
-    text-align: center;
-    color: antiquewhite;
-    margin-top: 20px;
-    margin-left: 30px;
-    border: 3px solid rgba(155,56,151,0.97);
-    border-radius: 5px;
-    background: black;
-
+#offSound:hover{
+    background-color: rgba(122,21,19,0.97);
 }
 #reset{
     color: rgba(155,84,24,0.97);
