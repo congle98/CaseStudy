@@ -13,15 +13,6 @@ class GameFeature {
         this.countTable=0;
         this.scores=[];
     }
-
-    checkAnswer(ans){ //kiểm tra câu trả lời đúng hay sai
-        if(ans===this.quizs[this.current].correct){
-            return true
-        }
-        else {
-            return false
-        }
-    }
     bonusScore(val){
         switch (this.current){ // bảng + điểm thưởng ở mỗi câu hỏi
             case 0:
@@ -54,6 +45,14 @@ class GameFeature {
             case 9:
                 this.score+=(1000*val);
                 break;
+        }
+    }
+    checkAnswer(ans){ //kiểm tra câu trả lời đúng hay sai
+        if(ans===this.quizs[this.current].correct){
+            return true
+        }
+        else {
+            return false
         }
     }
     chooseAnswer(ans){ // hiển thị kết quả kiểm tra đáp án
