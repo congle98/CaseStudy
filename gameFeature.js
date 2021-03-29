@@ -9,6 +9,9 @@ class GameFeature {
         this.count5050=1;//số lần sử dụng 5050, chỉ được sử dụng 1 lần khi count5050 ==1
         this.countDS=0;// số lần hiển thị
         this.countAsk=1;
+        this.inforPlayer=[];
+        this.countTable=0;
+        this.scores=[];
     }
 
     checkAnswer(ans){ //kiểm tra câu trả lời đúng hay sai
@@ -134,8 +137,11 @@ class GameFeature {
     }
     stopGame(){// sau khi trả lời hết câu hỏi hoặc dừng cuộc chơi thì hiển thị
         soundWin();
-        document.getElementById("ansDiv4").innerHTML = "<button id='bAns2-1' onclick=\"reset()\">Bắt đầu lại</button>";
+        this.scores.push(this.score);
+        document.getElementById("ansDiv4").innerHTML = "<button id='bAns2-1' onclick=\"start()\">Bắt đầu lại</button>";
         document.getElementById("show").innerHTML = "CHÚC MỪNG BẠN ĐÃ CHIẾN THẮNG BẠN ĐƯỢC THƯỞNG: "+this.score+" USD";
+        document.getElementById("dInforPlayer").innerHTML="<input id=\"inforPlayer\" type=\"text\" style=\"visibility: visible\"  placeholder=\"Mời nhập tên!!\">"
+
 
 
     }
@@ -143,33 +149,9 @@ class GameFeature {
         if (this.countDS <= this.limit){ // vì số lần hiển thị tiển thưởng sẽ chỉ được nhỏ hơn bằng số lượng câu hỏi
             document.getElementById("score").innerHTML="Tiền thưởng: "+this.score+" USD";
             this.countDS++;
-            // tránh trường hợp hết câu hỏi rồi nhưng nhấn vào nextquiz vẫn được cộng điểm
         }
     }
-    // askAudience(){
-    //     if(this.current<this.limit){
-    //         if(this.countAsk==1) {
-    //             let check = true;
-    //             while (check) {
-    //                 let a = Math.floor(Math.random() * 101);
-    //                 let b = Math.floor(Math.random() * 101);
-    //                 let c = Math.floor(Math.random() * 101);
-    //                 let d = Math.floor(Math.random() * 101);
-    //                 console.log(a, b, c, d);
-    //                 let sum = a + b + c + d;
-    //                 if (sum == 100) {
-    //                     document.getElementById("show").innerHTML = "Đáp án A: " + a + "%" + "</br>" +
-    //                         "Đáp án B: " + b + "%" + "</br>" + "Đáp án C: " + c + "%" + "</br>" + "Đáp án D: " + d + "%";
-    //                     this.countAsk++;
-    //                     check = false;
-    //                 }
-    //             }
-    //         }
-    //         else {
-    //             document.getElementById("show").innerHTML="bạn đã hết lượt sự trợ giúp của khán giả!!"
-    //         }
-    //     }
-    // }
+
     askAudience() {
         if (this.current < this.limit) {
             if (this.countAsk == 1) {
@@ -242,6 +224,25 @@ class GameFeature {
             }
         }
     }
+    getInforPlayer(){ // lấy tên người chơi
+        let infor=document.getElementById("inforPlayer").value;
+        this.inforPlayer.push(infor);
+    }
+    showTranscript(){ // hiển thị bang xếp hạng
+        if(this.countTable==0){
+            let table="<table id='tableScore' border='1'><tr><th>Người chơi</th><th>Điểm số</th></tr>"
+            for(let i=0;i<this.inforPlayer.length;i++){
+                table+="<tr><td>"+this.inforPlayer[i]+"</td>"+"<td>"+this.scores[i]+"</td></tr>"
+            }
+            table+="</table>";
+            document.getElementById("showTable").innerHTML=table;
+            this.countTable++;
+            }
+        else if(this.countTable==1) {
+            document.getElementById("showTable").innerHTML = "";
+            this.countTable--;
+        }
+    }
 
 
     endGame(){// kết thúc thì reset lại tất cả các biến đếm
@@ -252,18 +253,9 @@ class GameFeature {
         this.count5050=1;
         this.countDS=0;
         this.countAsk=1;
+        this.countTable=0
     }
-    // nextGame(){
-    //     this.current=0;
-    //     this.score=0;
-    //     this.cout=0;
-    // }
-    //CRUD quiz trong game
-    //add quiz vào trong game
     addQuiz(quiz){
         this.quizs.push(quiz);
-    }
-    deleteQuiz(index){
-        this.quizs.splice(index,1);
     }
 }

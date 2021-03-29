@@ -33,7 +33,11 @@
 </script>
 <div id="quiz">
     <div id="score"></div>  <!-- thẻ hiện tiền thưởng /-->
-    <div><button class="material-icons" id="offSound" onclick="soundOff()">contactless</button></div>
+    <div>
+        <button class="material-icons" id="offSound" onclick="soundOff()">contactless</button>
+        <button class="material-icons" id="showTranscript" onclick="gameManager.showTranscript()">equalizer</button>
+        <p id="showTable"></p>
+    </div>
     <div id="question">Chào mừng bạn đến với chương trình ai là triệu phú!!</div> <!-- thẻ hiện câu hỏi /-->
     <div id="ansDiv1">              <!-- thẻ hiện các câu trả lời /-->
         <button class="bAns" onclick="chooseAnswer(this.id)" id="ans1"></button>
@@ -44,12 +48,16 @@
         <button class="bAns" onclick="chooseAnswer(this.id)" id="ans4"></button>
     </div>
 <!--    thẻ show thông báo-->
+    <div id="dInforPlayer"  style="position: relative">
+        <input id="inforPlayer" type="text" style="visibility: visible"  placeholder="Mời nhập tên!!">
+    </div>
     <div id="ansDiv3">
-        <p id="show"></p>
+        <p id="show">
+        </p>
     </div>
 <!--    thẻ show các sự lựa chọn-->
     <div id="ansDiv4">
-        <button class="bAns3" onclick="reset();soundStart()">Bắt đầu</button>
+        <button class="bAns3" onclick="start();soundStart()">Bắt đầu</button>
     </div>
 </div>
 </body>
@@ -66,16 +74,6 @@
     let quiz8 = new Quiz("Câu 8: Ca sĩ nào không thuộc nhóm nhạc Big Bang của Hàn Quốc?",["A: T.O.P","B: G-Gragon","C: Yoochun","D: Deasung"],"C: Yoochun");
     let quiz9 = new Quiz("Câu 9: Đâu là một hợp kim của Nhôm?",["A: Ferit","B: Đuyra","C:  Alkanoid","D: Alumin"],"B: Đuyra");
     let quiz10 = new Quiz("Câu 10: Thiên tài Albert Einstein đã từng được mời làm tổng thống của đất nước nào?",["A: Latvia","B: Bungari","C: Israel","D: Jordan"],"C: Israel");
-    // let quiz1 = new Quiz("Câu 1: Ai là người tạo ra trò chơi này?",["Chú hàng xóm","Công chứ ai","Anh thợ điện","Bé phòng bên"],"Công chứ ai");
-    // let quiz2 = new Quiz("Câu 2: Điền từ còn thiếu vào trong câu sau:\"Đục nước béo..\"?",["Vạc","Cá","Mèo","Cò"],"Cò");
-    // let quiz3 = new Quiz("Câu 3: Việt Nam có chung biên giới với nước nào sau đây?",["Trung Quốc","Thái Lan","Myanmar","Bruney"],"Trung Quốc");
-    // let quiz4 = new Quiz("Câu 4: Đâu là tên một ngôi chùa nổi tiếng ở Hà Nam?",["Trấn Quốc","Bổ Đà","Tam Chúc","Bãi Đính"],"Tam Chúc");
-    // let quiz5 = new Quiz("Câu 5: Sóng biển thường được tạo ra do gì?",["Nắng","Gió","Mưa","Sương Mù"],"Gió");
-    // let quiz6 = new Quiz("Câu 6: Âm thanh có tần số lớn hơn 20KHz gọi là gì?",["Siêu Âm","Hạ Âm","Cận Âm","Quá Âm"],"Siêu Âm");
-    // let quiz7 = new Quiz("Câu 7: Tác phẩm nào được coi là tác phẩm nổi tiếng nhất của Hector Malot?",["Không gia đình","Đồi gió hú","Giã từ vũ khí","Miếng da lừa"],"Không gia đình");
-    // let quiz8 = new Quiz("Câu 8: Ca sĩ nào không thuộc nhóm nhạc Big Bang của Hàn Quốc?",["T.O.P","G-Gragon","Yoochun","Deasung"],"Yoochun");
-    // let quiz9 = new Quiz("Câu 9: Đâu là một hợp kim của Nhôm?",["Ferit","Đuyra","Alkanoid","Alumin"],"Đuyra");
-    // let quiz10 = new Quiz("Câu 10: Thiên tài Albert Einstein đã từng được mời làm tổng thống của đất nước nào?",["Latvia","Bungari","Israel","Jordan"],"Israel");
     let nOfQ=10; // khai báo số lượng câu hỏi
     let gameManager = new GameFeature(nOfQ); // khởi tạo game với số lượng các câu hỏi
     gameManager.addQuiz(quiz1);//thêm câu hỏi vào mảng quizs
@@ -94,41 +92,6 @@
             document.getElementById("ans" + (i + 1)).innerHTML = gameManager.quizs[index].answer[i];
         }
     }
-    // function displayQuiz(index) { //hiển thị câu hỏi và các đáp án
-    //     document.getElementById("question").innerHTML=gameManager.quizs[index].question;
-    //     let countA=1;
-    //     let countB=1;
-    //     let countC=1;
-    //     let countD=1;
-    //     for (let i = 0;i < 4;i++){
-    //         let check=0;
-    //         while (check==0){
-    //             let show=Math.floor(Math.random()*4);
-    //             if(show==0&&countA==1){
-    //                 document.getElementById("ans"+(i+1)).innerHTML="A: "+gameManager.quizs[index].answer[show];
-    //                 countA++;
-    //                 check++;
-    //             }
-    //             else if(show==1&&countB==1){
-    //                 document.getElementById("ans"+(i+1)).innerHTML="B: "+gameManager.quizs[index].answer[show];
-    //                 countB++;
-    //                 check++;
-    //             }
-    //             else if(show==2&&countC==1){
-    //                 document.getElementById("ans"+(i+1)).innerHTML="C: "+gameManager.quizs[index].answer[show];
-    //                 countC++;
-    //                 check++;
-    //             }
-    //             else if(show==3&&countD==1){
-    //                 document.getElementById("ans"+(i+1)).innerHTML="D: "+gameManager.quizs[index].answer[show];
-    //                 countD++;
-    //                 check++;
-    //             }
-    //         }
-    //         console.log(check,countA,countB,countC,countD)
-    //     }
-    //     // displayScore();
-    // }
      // hiển thị câu hỏi đầu tiên ngay khi vào web
     function displayScore() {
         gameManager.displayScore();
@@ -169,7 +132,7 @@
             "        <button class=\"bAns2\" onclick=\"halfQuestion();soundAlert()\">50/50</button>\n" +
             "        <button class=\"bAns2\" onclick=\"askAudience();soundAlert()\">Tư vấn</button>\n" +
             "        <button class=\"bAns2\" onclick=\"stopGame();soundAlert()\">Dừng chơi</button>\n" +
-            "        <button id='bAns2-1' onclick=\"reset()\">Bắt đầu lại</button>";
+            "        <button id='bAns2-1' onclick=\"start()\">Bắt đầu lại</button>";
         displayQuiz(0);// reset lại các câu hỏi từ đầu
         gameManager.endGame();
         displayQuiz(gameManager.current);
@@ -181,11 +144,14 @@
     function askAudience() { // gọi hàm hỏi ý kiến khán giả
         gameManager.askAudience();
     }
-    function reset() { // gọi hàm reset
+    function start() { // gọi hàm reset
+        gameManager.getInforPlayer();
+        console.log(localStorage);
+        document.getElementById("inforPlayer").style.visibility="hidden";
         document.getElementById('show').innerHTML="Bình tĩnh, tự tin, chiến thắng!!";
         resetQuiz()
     }
 
-
+    // remoteLS();
 </script>
 
