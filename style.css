@@ -30,7 +30,7 @@ body{
     height: 100px;
     margin-top: 40px;
     /*margin-bottom: 60px;*/
-    margin-left: 170px;
+    margin-left: 150px;
     text-align: center;
     opacity: 0.8;
     z-index: 1;
@@ -40,12 +40,12 @@ body{
     position: relative;
     width: 60%;
     margin-top: 1px;
-    margin-left: 170px;
+    margin-left: 150px;
     opacity: 0.9;
 }
 #ansDiv2{
     position: relative;
-    margin-left: 170px;
+    margin-left: 150px;
     width: 60%;
     opacity: 0.9;
 }
@@ -58,7 +58,7 @@ body{
      border-radius: 5px;
      color:rgba(255,176,6,0.97);
      margin-top: 20px;
-     margin-left: 170px;
+     margin-left: 150px;
      width: 50%;
      height: 170px;
      opacity: 0.8;
@@ -128,7 +128,7 @@ body{
     color: rgba(255,152,17,0.97);
     font-size: 25px;
     margin-top: 5px;
-    margin-left: 270px;
+    margin-left: 250px;
     padding: 10px;
     border-radius: 5px;
     border: 4px solid rgba(155,53,140,0.97);
@@ -139,7 +139,7 @@ body{
      text-align: center;
      color: rgba(255,155,0,0.97);
      margin-top: 20px;
-     margin-left: 220px;
+     margin-left: 200px;
      border: 3px solid rgba(155,56,151,0.97);
      border-radius: 5px;
      background: black;
@@ -176,7 +176,7 @@ body{
     font-size: 20px;
     margin-bottom: 20px;
     margin-top: 30px;
-    margin-left: 190px;
+    margin-left: 170px;
     padding: 10px 30px;
     border: 5px solid rgba(155,53,140,0.97) ;
     border-radius: 5px;
@@ -198,5 +198,5 @@ body{
     color: rgba(155,84,24,0.97);
     background: black;
     margin-top: 30px;
-    margin-left: 290px;
+    margin-left: 270px;
 }
